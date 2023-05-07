@@ -9,15 +9,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-    <link rel = "stylesheet" type = "text/css" href = "/css/bootstrap.css">
-    <script defer src="/js/bootstrap.js"></script>
+    <%@include file="head.jsp"%>>
 </head>
 <body>
 
-<div class="container ">
-    <%@ include file="header.jsp"%>
 
+    <%@ include file="header.jsp"%>
+    <div class="container ">
     <div class = "mt-4"></div>
 
     <!-- Button trigger modal -->

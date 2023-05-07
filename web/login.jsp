@@ -8,56 +8,37 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>Title</title>
-  <link rel = "stylesheet" type = "text/css" href = "/css/bootstrap.css">
-  <link rel = "stylesheet" type = "text/css" href = "/css/style.css">
-  <script defer src="/js/bootstrap.js"></script>
+  <%@include file="head.jsp"%>
 </head>
 <body>
+  <%@ include file="header.jsp"%>
 
-<div class = "container">
+  <div class = "container">
+    <div class="row mt-3">
+      <div class="col-6 mx-auto">
+    <%
+      String error = request.getParameter("error");
+      if(error!=null){
+    %>
 
-  <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/" ><strong>BITLAB SHOP</strong></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse position-absolute top-0 end-0" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Top Sales</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#">New Sales</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#">By Category</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active">Sign in</a>
+        <div class = "row mt-3">
+          <div class = "col-12">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              Incorrect email or password, try again!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
+        </div>
 
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-
-  <%
-    if (request.getAttribute("error") != null) {
-  %>
-  <div class="alert alert-danger mt-3" style="width: 50%; margin-left: 300px;" role="alert">
-    Incorrect <b>email</b> or <b>password</b>
-  </div>
-  <%
-    }
-  %>
+    <%
+      }
+    %>
+    <div class = "container" style="min-height: 500px">
 
 
 <form action = "/login" method = "post">
-  <div style="width: 50%; margin-left: 300px; margin-top: 10px">
-  <div class  = "row">
+  <div style="min-height: 500px">
+  <div class  = "row mt-2">
     <div class = "col-12">
       <label>Email :</label>
     </div>
@@ -83,8 +64,13 @@
     </div>
   </div>
   </div>
+
 </form>
+        </div>
+      </div>
 </div>
+  </div>
+
 
 
 </body>

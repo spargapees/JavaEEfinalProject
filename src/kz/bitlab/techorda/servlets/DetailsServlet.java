@@ -5,19 +5,20 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kz.bitlab.techorda.db.DBManager;
-import kz.bitlab.techorda.db.Task;
+import kz.bitlab.techorda.db.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(value = "/details")
 public class DetailsServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long id = Long.parseLong(request.getParameter("task_id"));
-        Task task = DBManager.getTask(id);
-
-        request.setAttribute("zadacha", task);
-        request.getRequestDispatcher("/details.jsp").forward(request, response);
+        Long id = Long.parseLong(request.getParameter("blog_id"));
+        Blog blog = DBConnection.getBlog(id);
+        ArrayList<Comments> comments = DBConnection.getAllComments(id);
+        request.setAttribute("comments", comments);
+        request.setAttribute("blog", blog);
+        request.getRequestDispatcher("/blogdetails.jsp").forward(request, response);
 
     }
 }

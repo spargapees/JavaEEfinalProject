@@ -21,21 +21,17 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            User user = DBConnection.getUser(email);
-            if (user!= null && user.getPassword().equals(password)) {
-                HttpSession httpSession = request.getSession();
-                httpSession.setAttribute("currentUser", user);
 
-                request.setAttribute("check", "ok");
-                response.sendRedirect("/profile");
+        String redirect = "/login?error";
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        User user = DBConnection.getUser(email);
+        if(user!=null){
+            if(user.getPassword().equals(password)){
+                redirect = "/profile";
+                request.getSession().setAttribute("currentUser", user);
             }
-            else {
-                request.setAttribute("error", "invalid");
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
-                requestDispatcher.include(request, response);
-
-            }
+        }
+        response.sendRedirect(redirect);
     }
 }
